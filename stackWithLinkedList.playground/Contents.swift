@@ -45,13 +45,11 @@ public class Node<T> :CustomStringConvertible {
 
 // stack implementation using linked list
 public struct Stack<T> {
-    private var nodeCount = 0
     private var start: Node<T>?
     
     public mutating func pop() throws -> Node<T>? {
         
         if let last = start {
-            nodeCount = nodeCount - 1
             start = last.next
             return last
         }else {
@@ -69,7 +67,6 @@ public struct Stack<T> {
             throw StackError.stackOverFlow
         }
         
-        nodeCount = nodeCount + 1
         item.next = start
         start = item
     }
@@ -79,7 +76,21 @@ public struct Stack<T> {
     }
     
     public func isFull() -> Bool {
-        return (nodeCount == Constants.capacity)
+        return (count() == Constants.capacity)
+    }
+    
+    private func count() -> Int {
+        guard start != nil else {return 0}
+        
+        var result = 0
+        var current = start
+        
+        while current != nil {
+            result = result + 1
+            current = current?.next
+        }
+        
+        return result
     }
 }
 
