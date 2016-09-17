@@ -16,3 +16,6 @@ Contributions are welcome
 
 ### Puzzles
 - [Towers of Hanoi](towersOfHanoi.playground/Contents.swift)
+
+### Sorting
+- [Bubble Sort](bubbleSort.playground/Contents.swift)
