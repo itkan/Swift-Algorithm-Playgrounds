@@ -1,7 +1,13 @@
 /*
  Towers of Hanoi.
  
- You are given a set of three pegs and n disks, with each disk a different size. Let's name the pegs A, B, and C, and let's number the disks from 1, the smallest disk, to n, the largest disk. At the outset, all n disks are on peg A, in order of decreasing size from bottom to top, so that disk n is on the bottom and disk 1 is on the top. The goal is to move all n disks from peg A to peg B.
+ You are given a set of three pegs and n disks,
+ with each disk a different size. Let's name the pegs A, B, and C,
+ and let's number the disks from 1, the smallest disk, to n,
+ the largest disk. At the outset, all n disks are on peg A,
+ in order of decreasing size from bottom to top,
+ so that disk n is on the bottom and disk 1 is on the top.
+ The goal is to move all n disks from peg A to peg B.
  
  Rules:
  1. You may move only one disk at a time.
@@ -20,4 +26,4 @@ public class TowersOfHanoi {
     }
 }
 
-TowersOfHanoi.process(disks: 5, from: "A", to: "C", aux: "B")
+TowersOfHanoi.process(disks: 4, from: "A", to: "C", aux: "B")
