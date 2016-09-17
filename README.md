@@ -19,3 +19,14 @@ Contributions are welcome
 
 ### Sorting
 - [Bubble Sort](bubbleSort.playground/Contents.swift)
+
+### To be added
+- [Linear Sort]
+- [Selection Sort]
+- [Quick Sort]
+- [Heap Sort]
+- [Max Heap]
+- [Min Heap]
+- [Binary Tree]
+- [Circular Linked List]
+- [Doubly Linked List]
