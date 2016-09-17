@@ -20,7 +20,7 @@ import XCTest
 
 // configurable values defined at one place
 public struct Constants {
-    static let stackSize = 3
+    static let capacity = 3
 }
 
 // custom stack exception
@@ -79,7 +79,7 @@ public struct Stack<T> {
     }
     
     public func isFull() -> Bool {
-        return (nodeCount == Constants.stackSize)
+        return (nodeCount == Constants.capacity)
     }
 }
 
