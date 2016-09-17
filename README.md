@@ -9,7 +9,7 @@ All code is compilable with **XCode 8.0** and **Swift 3**
 Contributions are welcome
 
 ## The Algorithms
-- [Stack using Array](Stack/)
-- [Stack using Linked List](Stack/)
-- [Queue using Array](Stack/)
-- [Queue using Linked List](Stack/)
+- [Stack using Array](stackWithArray.playground/Contents.swift)
+- [Stack using Linked List](stackWithLinkedList.playground/Contents.swift)
+- [Queue using Array](queueWithArray.playground/Contents.swift)
+- [Queue using Linked List](queueWithLinkedList.playground/Contents.swift)
