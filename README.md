@@ -13,3 +13,4 @@ Contributions are welcome
 - [Stack using Linked List](stackWithLinkedList.playground/Contents.swift)
 - [Queue using Array](queueWithArray.playground/Contents.swift)
 - [Queue using Linked List](queueWithLinkedList.playground/Contents.swift)
+- [Towers of Hanoi](towersOfHanoi.playground/Contents.swift)
