@@ -5,6 +5,7 @@
  
  1. Queue is an ordered list of similar data type.
  2. Queue is a FIFO structure. (First in First out).
+ 3. Queue is said to be in Overflow state when it is completely full and is said to be in Underflow state if it is completely empty.
  
  Basic Operations
  
