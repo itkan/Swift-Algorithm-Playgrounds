@@ -9,8 +9,8 @@
  
  Basic Operations
  
- 1. enqueue() − add (store) an item to the queue.
- 2. dequeue() − remove (access) an item from the queue.
+ 1. enqueue() − add (store) an value to the queue.
+ 2. dequeue() − remove (access) an value from the queue.
  3. peek() − get the element at front of the queue without removing it.
  4. isfull() − checks if queue is full.
  5. isempty() − checks if queue is empty.
@@ -32,16 +32,12 @@ public enum QueueError : Error {
 }
 
 //linked list node
-public class Node<T> :CustomStringConvertible {
+public class Node<T> {
     var value:T
     var next:Node<T>?
     
     init(value:T) {
         self.value = value
-    }
-    
-    public var description: String {
-        return "\(value)"
     }
 }
 
@@ -50,7 +46,7 @@ public struct Queue<T> {
     private var start: Node<T>?
     private var end: Node<T>?
     
-    public mutating func dequeue() throws -> Node<T>? {
+    public mutating func dequeue() throws -> T? {
         
         if let first = start {
             start = first.next
@@ -59,28 +55,30 @@ public struct Queue<T> {
                 end = nil
             }
             
-            return first
+            return first.value
         }else {
             throw QueueError.queueUnderFlow
         }
     }
     
-    public func peek() -> Node<T>? {
-        return start
+    public func peek() -> T? {
+        return start?.value
     }
     
-    public mutating func enqueue(item:Node<T>) throws {
+    public mutating func enqueue(value:T) throws {
         
         if isFull() {
             throw QueueError.queueOverFlow
         }
         
+        let node = Node<T>(value:value)
+        
         if start == nil {
-            start = item
-            end = item
+            start = node
+            end = node
         }else {
-            end?.next = item
-            end = item
+            end?.next = node
+            end = node
         }
     }
     
@@ -111,7 +109,7 @@ public struct Queue<T> {
 do {
     var queue = Queue<Int>()
     XCTAssertTrue(queue.isEmpty())
-    try queue.enqueue(item: Node<Int>(value: 10))
+    try queue.enqueue(value: 10)
     XCTAssertFalse(queue.isEmpty())
     queue.peek()
     try queue.dequeue()
@@ -124,8 +122,8 @@ do {
 do {
     var queue = Queue<Int>()
     XCTAssertTrue(queue.isEmpty())
-    try queue.enqueue(item: Node<Int>(value: 10))
-    try queue.enqueue(item: Node<Int>(value: 20))
+    try queue.enqueue(value: 10)
+    try queue.enqueue(value: 20)
     XCTAssertFalse(queue.isEmpty())
     try queue.dequeue()
     XCTAssertFalse(queue.isEmpty())
@@ -139,8 +137,8 @@ do {
 do {
     var queue = Queue<Int>()
     XCTAssertTrue(queue.isEmpty())
-    try queue.enqueue(item: Node<Int>(value: 10))
-    try queue.enqueue(item: Node<Int>(value: 20))
+    try queue.enqueue(value: 10)
+    try queue.enqueue(value: 20)
     XCTAssertFalse(queue.isEmpty())
     try queue.dequeue()
     XCTAssertFalse(queue.isEmpty())
@@ -156,11 +154,11 @@ do {
 do {
     var queue = Queue<Int>()
     XCTAssertTrue(queue.isEmpty())
-    try queue.enqueue(item: Node<Int>(value: 10))
-    try queue.enqueue(item: Node<Int>(value: 20))
-    try queue.enqueue(item: Node<Int>(value: 30))
+    try queue.enqueue(value: 10)
+    try queue.enqueue(value: 20)
+    try queue.enqueue(value: 30)
     XCTAssertTrue(queue.isFull())
-    try queue.enqueue(item: Node<Int>(value: 40))
+    try queue.enqueue(value: 40)
 }catch let er as QueueError {
     print("\(er)")
 }
@@ -170,13 +168,13 @@ do {
 do {
     var queue = Queue<Int>()
     XCTAssertTrue(queue.isEmpty())
-    try queue.enqueue(item: Node<Int>(value: 10))
-    try queue.enqueue(item: Node<Int>(value: 20))
-    try queue.enqueue(item: Node<Int>(value: 30))
+    try queue.enqueue(value: 10)
+    try queue.enqueue(value: 20)
+    try queue.enqueue(value: 30)
     XCTAssertTrue(queue.isFull())
     try queue.dequeue()
     XCTAssertFalse(queue.isFull())
-    try queue.enqueue(item: Node<Int>(value: 40))
+    try queue.enqueue(value: 40)
 }catch let er as QueueError {
     print("\(er)")
 }
@@ -186,9 +184,9 @@ do {
 do {
     var queue = Queue<Int>()
     XCTAssertTrue(queue.isEmpty())
-    try queue.enqueue(item: Node<Int>(value: 10))
-    try queue.enqueue(item: Node<Int>(value: 20))
-    try queue.enqueue(item: Node<Int>(value: 30))
+    try queue.enqueue(value: 10)
+    try queue.enqueue(value: 20)
+    try queue.enqueue(value: 30)
     XCTAssertTrue(queue.isFull())
     try queue.dequeue()
     try queue.dequeue()

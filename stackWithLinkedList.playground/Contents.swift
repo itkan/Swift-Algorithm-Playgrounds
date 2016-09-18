@@ -30,16 +30,12 @@ public enum StackError : Error {
 }
 
 //linked list node
-public class Node<T> :CustomStringConvertible {
+public class Node<T> {
     var value:T
     var next:Node<T>?
     
     init(value:T) {
         self.value = value
-    }
-    
-    public var description: String {
-        return "\(value)"
     }
 }
 
@@ -47,28 +43,29 @@ public class Node<T> :CustomStringConvertible {
 public struct Stack<T> {
     private var start: Node<T>?
     
-    public mutating func pop() throws -> Node<T>? {
+    public mutating func pop() throws -> T? {
         
         if let last = start {
             start = last.next
-            return last
+            return last.value
         }else {
             throw StackError.stackUnderFlow
         }
     }
     
-    public func peek() -> Node<T>? {
-        return start
+    public func peek() -> T? {
+        return start?.value
     }
     
-    public mutating func push(item:Node<T>) throws {
+    public mutating func push(value:T) throws {
         
         if isFull() {
             throw StackError.stackOverFlow
         }
         
-        item.next = start
-        start = item
+        let node = Node<T>(value: value)
+        node.next = start
+        start = node
     }
     
     public func isEmpty() -> Bool {
@@ -94,11 +91,12 @@ public struct Stack<T> {
     }
 }
 
+
 // test one element
 do {
     var st = Stack<Int>()
     XCTAssertTrue(st.isEmpty())
-    try st.push(item: Node<Int>(value:10))
+    try st.push(value: 10)
     XCTAssertFalse(st.isEmpty())
     st.peek()
     try st.pop()
@@ -111,30 +109,27 @@ do {
 do {
     var st = Stack<Int>()
     XCTAssertTrue(st.isEmpty())
-    try st.push(item: Node<Int>(value:10))
-    try st.push(item: Node<Int>(value:20))
+    try st.push(value: 10)
+    try st.push(value: 20)
     XCTAssertFalse(st.isEmpty())
     try st.pop()
     XCTAssertFalse(st.isEmpty())
     try st.pop()
-    st.peek()
     XCTAssertTrue(st.isEmpty())
 }catch let er as StackError {
     print("\(er)")
 }
 
-
 // test stack UnderFlow
 do {
     var st = Stack<Int>()
     XCTAssertTrue(st.isEmpty())
-    try st.push(item: Node<Int>(value:10))
-    try st.push(item: Node<Int>(value:20))
+    try st.push(value: 10)
+    try st.push(value: 20)
     XCTAssertFalse(st.isEmpty())
     try st.pop()
     XCTAssertFalse(st.isEmpty())
     try st.pop()
-    st.peek()
     XCTAssertTrue(st.isEmpty())
     try st.pop()
 }catch let er as StackError {
@@ -146,11 +141,11 @@ do {
 do {
     var st = Stack<Int>()
     XCTAssertTrue(st.isEmpty())
-    try st.push(item: Node<Int>(value:10))
-    try st.push(item: Node<Int>(value:20))
-    try st.push(item: Node<Int>(value:30))
+    try st.push(value: 10)
+    try st.push(value: 20)
+    try st.push(value: 30)
     XCTAssertTrue(st.isFull())
-    try st.push(item: Node<Int>(value:40))
+    try st.push(value: 40)
 }catch let er as StackError {
     print("\(er)")
 }
@@ -161,13 +156,13 @@ do {
 do {
     var st = Stack<Int>()
     XCTAssertTrue(st.isEmpty())
-    try st.push(item: Node<Int>(value:10))
-    try st.push(item: Node<Int>(value:20))
-    try st.push(item: Node<Int>(value:30))
+    try st.push(value: 10)
+    try st.push(value: 20)
+    try st.push(value: 30)
     XCTAssertTrue(st.isFull())
     try st.pop()
     XCTAssertFalse(st.isFull())
-    try st.push(item: Node<Int>(value:40))
+    try st.push(value: 40)
 }catch let er as StackError {
     print("\(er)")
 }
@@ -177,9 +172,9 @@ do {
 do {
     var st = Stack<Int>()
     XCTAssertTrue(st.isEmpty())
-    try st.push(item: Node<Int>(value:10))
-    try st.push(item: Node<Int>(value:20))
-    try st.push(item: Node<Int>(value:30))
+    try st.push(value: 10)
+    try st.push(value: 20)
+    try st.push(value: 30)
     XCTAssertTrue(st.isFull())
     try st.pop()
     try st.pop()
