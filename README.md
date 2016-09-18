@@ -13,6 +13,7 @@ Contributions are welcome
 - [Stack using Linked List](stackWithLinkedList.playground/Contents.swift)
 - [Queue using Array](queueWithArray.playground/Contents.swift)
 - [Queue using Linked List](queueWithLinkedList.playground/Contents.swift)
+- [Binary Search Tree using Linked List](binarySearchTree.playground/Contents.swift)
 
 ### Puzzles
 - [Towers of Hanoi](towersOfHanoi.playground/Contents.swift)
