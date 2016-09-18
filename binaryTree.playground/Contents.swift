@@ -31,46 +31,10 @@ public class Node<T> where T:Comparable {
     init(value:T) {
         self.value = value
     }
-    
-    public var inorder: String {
-        var s = ""
-        if let left = left {
-            s += "\(left.inorder) "
-        }
-        s += "\(value)"
-        if let right = right {
-            s += " \(right.inorder)"
-        }
-        return s
-    }
-    
-    public var preorder: String {
-        var s = ""
-        s += "\(value)"
-        if let left = left {
-            s += " \(left.preorder)"
-        }
-        if let right = right {
-            s += " \(right.preorder)"
-        }
-        return s
-    }
-    
-    public var postorder: String {
-        var s = ""
-        if let left = left {
-            s += "\(left.postorder) "
-        }
-        if let right = right {
-            s += "\(right.postorder) "
-        }
-        s += "\(value)"
-        return s
-    }
 }
 
 public struct BinarySearchTree<T> where T:Comparable {
-    var root:Node<T>?
+    private var root:Node<T>?
     
     private func insert(node:Node<T>, parent:Node<T>) {
         
@@ -113,10 +77,6 @@ public struct BinarySearchTree<T> where T:Comparable {
         }
     }
     
-    public func search(value:T) -> Bool {
-        return search(value: value, parent: root)
-    }
-    
     private func search(value:T, parent:Node<T>?) -> Bool {
         
         guard let currentNode = parent else {
@@ -131,16 +91,78 @@ public struct BinarySearchTree<T> where T:Comparable {
             return search(value: value, parent: currentNode.right)
         }
     }
+    
+    public func search(value:T) -> Bool {
+        return search(value: value, parent: root)
+    }
+    
+    private func inorder(node:Node<T>) -> String {
+        var s = ""
+        if let left = node.left {
+            s += "\(inorder(node: left)) "
+        }
+        s += "\(node.value)"
+        if let right = node.right {
+            s += " \(inorder(node: right))"
+        }
+        return s
+    }
+    
+    public func inorder() -> String {
+        if let tRoot = root {
+            return inorder(node: tRoot)
+        }
+        return ""
+    }
+    
+    private func preorder(node:Node<T>) -> String {
+        var s = ""
+        s += "\(node.value)"
+        if let left = node.left {
+            s += " \(preorder(node: left))"
+        }
+        if let right = node.right {
+            s += " \(preorder(node: right))"
+        }
+        return s
+    }
+    
+    public func preorder() -> String {
+        if let tRoot = root {
+            return preorder(node: tRoot)
+        }
+        return ""
+    }
+    
+    private func postorder(node:Node<T>) -> String {
+        var s = ""
+        if let left = node.left {
+            s += "\(postorder(node: left)) "
+        }
+        if let right = node.right {
+            s += "\(postorder(node: right)) "
+        }
+        s += "\(node.value)"
+        return s
+    }
+    
+    public func postorder() -> String {
+        if let tRoot = root {
+            return postorder(node: tRoot)
+        }
+        return ""
+    }
 }
 
 //Execution
 var tree = BinarySearchTree<Int>()
 tree.insert(array: [6,6,3,8,0,5,7,3,0,9])
-print("inorder \(tree.root!.inorder)")
-print("preorder \(tree.root!.preorder)")
-print("postorder \(tree.root!.postorder)")
+print("inorder \(tree.inorder())")
+print("preorder \(tree.preorder())")
+print("postorder \(tree.postorder())")
 
 //Test Search
 XCTAssertFalse(tree.search(value: 12))
 tree.insert(value: 12)
 XCTAssertTrue(tree.search(value: 12))
+print("found 12")
