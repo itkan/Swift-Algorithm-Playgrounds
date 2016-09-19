@@ -21,6 +21,9 @@ Contributions are welcome
 ### Sorting
 - [Bubble Sort](bubbleSort.playground/Contents.swift)
 
+### Series
+- [Fibonacci Series Loop & Recursion](fibonacciSeries.playground/Contents.swift)
+
 ### To be added
 - [Linear Sort]
 - [Selection Sort]
