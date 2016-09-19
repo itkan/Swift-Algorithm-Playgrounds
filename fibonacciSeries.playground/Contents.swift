@@ -5,9 +5,9 @@
  
  Fn = Fn-1 + Fn-2
  
- The initial values of F0 & F1 can be taken 0, 1
+ The initial values of F0 & F1 to be taken as 0, 1
  
- Check: iteration is more efficient than recursion in case of Fibonacci
+ Check: Loop is more efficient than recursion in case of Fibonacci
 */
 
 public class Fibonacci {
