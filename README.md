@@ -20,6 +20,7 @@ Contributions are welcome
 
 ### Sorting
 - [Bubble Sort](bubbleSort.playground/Contents.swift)
+- [Insertion Sort](insertionSort.playground/Contents.swift)
 
 ### Series
 - [Fibonacci Series Loop & Recursion](fibonacciSeries.playground/Contents.swift)
