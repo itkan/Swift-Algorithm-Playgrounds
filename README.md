@@ -32,6 +32,5 @@ Contributions are welcome
 - [Heap Sort]
 - [Max Heap]
 - [Min Heap]
-- [Binary Tree]
 - [Circular Linked List]
 - [Doubly Linked List]
